@@ -7,6 +7,7 @@
 using namespace std;
 // for demonstration only. never save your password in the code!
 const string server = "tcp://127.0.0.1:3306"; // 데이터베이스 주소
+											  // tcp 방식을 이용해서 127.0.0.1(자기자신) 컴퓨터에 3306번(mysql 기본 포트) 으로 접속하라
 const string username = "user"; // 데이터베이스 사용자
 const string password = "1234"; // 데이터베이스 접속 비밀번호
 
@@ -37,6 +38,7 @@ int main()
 	stmt->execute("CREATE TABLE inventory (id serial PRIMARY KEY, name VARCHAR(50), quantity INTEGER);");
 	cout << "Finished creating table" << endl;
 	delete stmt;
+
 	pstmt = con->prepareStatement("INSERT INTO inventory(name, quantity) VALUES(?,?)");
 	pstmt->setString(1, "banana");
 	pstmt->setInt(2, 150);
